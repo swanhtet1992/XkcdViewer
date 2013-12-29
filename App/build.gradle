@@ -1,0 +1,33 @@
+apply plugin: 'android'
+
+/**
+ * Get the version code from command line param
+ *
+ * @return int If the param -PversionCode is present then return int value or -1
+ */
+def setVersionCode = { ->
+
+    def code = project.hasProperty('versionCode') ? versionCode.toInteger() : -1
+    println "VersionCode is set to $code"
+    return code
+}
+
+def setVersionName = { ->
+
+    def code = project.hasProperty('versionName') ? versionName : "0.0.0"
+    println "VersionName is set to $code"
+    return code
+}
+
+android {
+	compileSdkVersion 19
+	buildToolsVersion '19'
+	defaultConfig {
+        minSdkVersion 5
+        targetSdkVersion 19
+    }
+}
+
+dependencies {
+	compile project(":ComicViewer")
+}
